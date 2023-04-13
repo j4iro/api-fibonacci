@@ -24,5 +24,5 @@ app.use(errorHandler)
 // Run app
 const port = config.port
 app.listen(port, () => {
-  logger.info(`Server start in http://localhost:${port}/`)
+  logger.info(`Api started at http://localhost:${port}/`)
 })

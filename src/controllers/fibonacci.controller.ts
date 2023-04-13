@@ -10,9 +10,10 @@ class FibonacciController {
    */
   getFibonacciByIndex(req: Request, res: Response, next: NextFunction) {
     try {
-      const indexString = req.query.index as string
-      const indexNumber = parseInt(indexString)
-      const fibonacci = FibonacciServices.getFibonacciByIndex(indexNumber)
+      const indexParam = req.query.index as string
+      const fibonacci = FibonacciServices.getFibonacciByIndex(
+        parseInt(indexParam)
+      )
       return res.json({
         success: true,
         data: {

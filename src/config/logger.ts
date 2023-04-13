@@ -2,6 +2,7 @@ import { createLogger, format, transports } from 'winston'
 import config from './config'
 import path from 'path'
 
+// Format for print logs
 const formatCustom = format.combine(
   format.splat(),
   format.simple(),
@@ -11,6 +12,7 @@ const formatCustom = format.combine(
   })
 )
 
+// Transport for level info and error
 const logger = createLogger({
   transports: [
     new transports.File({
@@ -30,7 +32,7 @@ const logger = createLogger({
 if (config.nodeEnv !== 'production') {
   logger.add(
     new transports.Console({
-      format: format.simple(),
+      format: formatCustom,
     })
   )
 }

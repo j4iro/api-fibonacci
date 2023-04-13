@@ -1,6 +1,8 @@
 import config from '../config/config'
 import logger from '../config/logger'
 import boom from '@hapi/boom'
+
+// types
 import { Request, Response, NextFunction } from 'express'
 
 // funcion for add stack error in development
@@ -13,12 +15,13 @@ const withErrorStack = (error: any, stack: any) => {
 
 // function for print error with logger
 const logError = (
-  error: Error,
+  error: Error | any,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  logger.error('%o', error)
+  if (error.isBoom) logger.error(error?.output?.payload)
+  else logger.error('%o', error)
   next(error)
 }
 
@@ -29,9 +32,7 @@ const wrapErrors = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!error.isBoom) {
-    next(boom.badImplementation(error))
-  }
+  if (!error.isBoom) next(boom.badImplementation(error))
 
   next(error)
 }
