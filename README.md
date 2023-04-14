@@ -40,7 +40,7 @@ Adicionalmente, la api contiene rutas versionadas: `/v1/fibonacci` para que sea 
 
 ### ¿Cómo la mejoraria?
 
-Usaria el uso de caché para mejorar el rendimiento, esto implica almacenar los resultados calculados en caché para evitar volver a calcularlos. La implementación sería así:
+Usaria la caché para mejorar el rendimiento, esto implica almacenar los resultados calculados en caché para evitar volver a calcularlos. La implementación sería así:
 
 ```ts
 type objectNumber = Record<number, number>
